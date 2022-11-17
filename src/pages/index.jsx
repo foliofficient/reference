@@ -26,6 +26,15 @@ const Index = () => {
             <li>
               <Link href={'/test/test_wm'}>Test Window Manager</Link>
             </li>
+            <li>
+              <Link href={'/test/test_wm_abnb_charts'}>Airbnb Charts</Link>
+            </li>
+            <li>
+              <Link href={'/test/test_wm_nivo_charts'}>Nivo Charts</Link>
+            </li>
+            <li>
+              <Link href={'/test/test_wm_victory_charts'}>Victory Charts</Link>
+            </li>
           </ul>
         </>
       </AuthLayout>
