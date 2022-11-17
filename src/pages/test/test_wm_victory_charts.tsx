@@ -7,6 +7,9 @@ import assetMap from '@/components/explore/assetMap'
 import moment from 'moment/moment'
 import ABNBSimpleStaticBarChart from '@/components/charting/airbnb/ABNBSimpleStaticBarChart'
 import ParentSize from '@visx/responsive/lib/components/ParentSize'
+import ABNBSimpleCurveChart from '@/components/charting/airbnb/ABNBSimpleCurveChart'
+import ABNBSimpleAreaClosed from '@/components/charting/airbnb/ABNBSimpleAreaClosed'
+import VSimpleBar from '@/components/charting/victory/VSimpleBar'
 
 export type ViewId = 'a' | 'b' | 'c' | 'new'
 
@@ -67,7 +70,7 @@ let options = {
   },
 }
 
-const TestWM = () => {
+const TestWMSimpleCharts = () => {
   const assetInfo = assetMap['ethereum']
   const { priceInfo, discordGuildId, githubParam } = assetInfo
   const [posSentiment, setPosSentiment] = useState([])
@@ -83,55 +86,23 @@ const TestWM = () => {
     new: 'Github Data',
   }
 
-  const aRef = useRef<any>()
-  const bRef = useRef<any>()
-  const cRef = useRef<any>()
-  const dRef = useRef<any>()
-
   const ELEMENT_MAP: Record<ViewId, JSX.Element> = {
     a: (
       <ParentSize>
-        {({ width, height }) => (
-          <Chart
-            ref={aRef}
-            darkTheme={true}
-            options={options}
-            candlestickSeries={[{ data: priceData }]}
-            height={height}
-            width={width}
-          />
-        )}
+        {({ width, height }) => <VSimpleBar height={height} width={width} />}
       </ParentSize>
     ),
     b: (
       <ParentSize>
-        {({ width, height }) => (
-          <Chart
-            ref={bRef}
-            darkTheme={true}
-            options={options}
-            areaSeries={[{ data: posSentiment }]}
-            height={height}
-            width={width}
-          />
-        )}
+        {({ width, height }) => <VSimpleBar height={height} width={width} />}
       </ParentSize>
     ),
     c: (
       <ParentSize>
-        {({ width, height }) => (
-          <Chart
-            ref={cRef}
-            darkTheme={true}
-            options={options}
-            areaSeries={[{ data: negSentiment }]}
-            height={height}
-            width={width}
-          />
-        )}
+        {({ width, height }) => <VSimpleBar height={height} width={width} />}
       </ParentSize>
     ),
-    new: <h1>Nothing goes here</h1>,
+    new: <h1>New Things go here</h1>,
   }
 
   useEffect(() => {
@@ -176,43 +147,10 @@ const TestWM = () => {
           path={path}
           createNode={() => 'new'}
           title={TITLE_MAP[id]}
-          onDragEnd={(...args) => {
-            console.log('onDragEnd', args)
-            if (
-              aRef &&
-              aRef.current &&
-              aRef['current'].hasOwnProperty('resizeHandler')
-            )
-              aRef.current.resizeHandler()
-            if (
-              bRef &&
-              bRef.current &&
-              bRef['current'].hasOwnProperty('resizeHandler')
-            )
-              bRef.current.resizeHandler()
-            if (
-              cRef &&
-              cRef.current &&
-              cRef['current'].hasOwnProperty('resizeHandler')
-            )
-              cRef.current.resizeHandler()
-            if (
-              dRef &&
-              dRef.current &&
-              dRef['current'].hasOwnProperty('resizeHandler')
-            )
-              dRef.current.resizeHandler()
-          }}
         >
           {ELEMENT_MAP[id]}
         </MosaicWindow>
       )}
-      onChange={(...args) => {
-        console.log('onChange', args)
-      }}
-      onRelease={(...args) => {
-        console.log('onRelease', args)
-      }}
       initialValue={{
         direction: 'column',
         first: 'a',
@@ -226,4 +164,4 @@ const TestWM = () => {
   )
 }
 
-export default TestWM
+export default TestWMSimpleCharts

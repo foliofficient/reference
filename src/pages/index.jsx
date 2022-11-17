@@ -14,8 +14,14 @@ const Index = () => {
       >
         <>
           <ul>
+            {/*<li>*/}
+            {/*  <Link href={'/test/test_harness'}>Test Harness</Link>*/}
+            {/*</li>*/}
             <li>
-              <Link href={'/test/test_harness'}>Test Harness</Link>
+              <Link href={'/test/test_mosaic_size'}>Mosaic Size</Link>
+            </li>
+            <li>
+              <Link href={'/test/test_trading_view'}>Trading View</Link>
             </li>
             <li>
               <Link href={'/test/test_wm'}>Test Window Manager</Link>
